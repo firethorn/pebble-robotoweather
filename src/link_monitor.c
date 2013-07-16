@@ -62,7 +62,7 @@ void link_monitor_handle_success()
 {
 	if(__linkStatus == LinkStatusFailed)
 	{
-		//Notify the user of reconnection. commented out
+		//Notify the user of reconnection. (commented out)
 		//vibes_short_pulse();
 	}
 	

@@ -52,8 +52,8 @@ void request_weather();
 
 void failed(int32_t cookie, int http_status, void* context) {
 	if(cookie == 0 || cookie == WEATHER_HTTP_COOKIE) {
-		weather_layer_set_icon(&weather_layer, WEATHER_ICON_NO_WEATHER);
-		text_layer_set_text(&weather_layer.temp_layer, "---°");
+		//weather_layer_set_icon(&weather_layer, WEATHER_ICON_NO_WEATHER);
+		//text_layer_set_text(&weather_layer.temp_layer, "---°");
 	}
 	
 	link_monitor_handle_failure(http_status);
@@ -249,7 +249,7 @@ void request_weather() {
 	DictionaryIterator *body;
 	HTTPResult result = http_out_get("http://ofkorth.net/pebble/weather", WEATHER_HTTP_COOKIE, &body);
 	if(result != HTTP_OK) {
-		weather_layer_set_icon(&weather_layer, WEATHER_ICON_NO_WEATHER);
+		//weather_layer_set_icon(&weather_layer, WEATHER_ICON_NO_WEATHER);
 		return;
 	}
 	dict_write_int32(body, WEATHER_KEY_LATITUDE, our_latitude);
@@ -257,7 +257,7 @@ void request_weather() {
 	dict_write_cstring(body, WEATHER_KEY_UNIT_SYSTEM, UNIT_SYSTEM);
 	// Send it.
 	if(http_out_send() != HTTP_OK) {
-		weather_layer_set_icon(&weather_layer, WEATHER_ICON_NO_WEATHER);
+		//weather_layer_set_icon(&weather_layer, WEATHER_ICON_NO_WEATHER);
 		return;
 	}
 }
